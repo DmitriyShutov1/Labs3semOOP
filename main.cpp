@@ -1,27 +1,13 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-
 #include "lib.h"
 
-using namespace std;
-
-int vowel_count(string s){
-    char vowel[] = {'a', 'o', 'e', 'i', 'u', 'y'};
-    int k = 0;
-    for(char elem: s){
-        if (count(begin(vowel), end(vowel), elem)){
-            k += 1;
-        }
-    }
-    return k;
-}
-
 int main() {
-    string s;
-    int b = 0;
-    while(cin >> s){
-        b += vowel_count(s);
+    std::string input;
+    int vowelCount = 0;
+    while(std::cin >> input){
+        vowelCount += vowel_count(input);
     }
-    cout << b;
+    std::cout << vowelCount;
 }
