@@ -3,12 +3,12 @@
 #include "lib.h"
 #include <algorithm>
 
-int vowel_count(std::string s){
+int vowel_count(std::string input){
     char vowel[] = {'a', 'o', 'e', 'i', 'u', 'y'};
-    int k = 0;
-    for(char elem: s){
+    int result = 0;
+    for(char elem: input){
         if (std::count(std::begin(vowel), std::end(vowel), elem))
-            k += 1;
+            result += 1;
     }
-    return k;
+    return result;
 }
