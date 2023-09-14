@@ -1,3 +1,3 @@
 #pragma once
 
-int A();
+int vowel_count(std::string s);
