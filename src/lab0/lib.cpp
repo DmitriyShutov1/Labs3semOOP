@@ -1,7 +1,14 @@
-// Copyright 2023 SomeName
-
+#include <iostream>
+#include <string>
 #include "lib.h"
+#include <algorithm>
 
-int A() {
-    return 20;
+int vowel_count(std::string input){
+    char vowel[] = {'a', 'o', 'e', 'i', 'u', 'y'};
+    int result = 0;
+    for(char elem: input){
+        if (std::count(std::begin(vowel), std::end(vowel), elem))
+            result += 1;
+    }
+    return result;
 }
