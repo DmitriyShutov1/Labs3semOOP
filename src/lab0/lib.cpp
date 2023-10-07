@@ -4,9 +4,62 @@
 #include <string>
 
 
+
+Money::Money(Money &&other) noexcept{
+    size = other.size;
+    array = other.array;
+    other.size = 0;
+    other.array = nullptr;
+}
+
+Money::Money(const std::initializer_list<unsigned char> &t){
+    array = new unsigned char[t.size()];
+    size_t i{0};
+    for (auto &c : t)
+        array[i++] = c;
+    size = t.size();
+    double d = this->get_value();
+    if(static_cast<int>(d * 100) / 100.0 != d){
+            throw "Wrong parametr";
+    }
+}
+
+Money::Money(){
+        size = 0;
+        array = nullptr;
+}
+
+Money::Money(const std::string &t){
+        double data = stod(t);
+        if(static_cast<int>(data * 100) / 100.0 != data){
+            throw "Wrong parametr";
+        }
+        else{
+                data *= 100;
+                int data_int = (int) data;
+                int count = 0;
+                int temp = data_int;
+                while (temp != 0) {
+                        temp /= 10;
+                        count++;
+                }
+                size = count;
+                //создаем массив и записываем в него число
+                array = new unsigned char[size + 1];
+                int temporary_data = data_int;
+                for (int i = 0; i < size; ++i) {
+                        char elem = (temporary_data % 10) + '0';
+                        array[size - 1 - i] = elem;
+                        temporary_data /= 10;
+                }
+                array[size] = '\0';
+        }
+}
+
+
 Money::Money(double data) {
         if(static_cast<int>(data * 100) / 100.0 != data){
-            throw "Eblan chi sho?";
+            throw "Wrong parametr";
         }
         else{
             data *= 100;
@@ -47,7 +100,7 @@ Money::Money(const Money& other) {
 
 void Money::set_value(double data) {
         if(static_cast<int>(data * 100) / 100.0 != data){
-            throw "Eblan chi sho?";
+            throw "Wrong parametr";
         }
         else{
             data *= 100;
@@ -145,7 +198,6 @@ void Money::serialization(std::string file_name){
 
 void Money::deserialization(std::string file_name){
         std::ofstream file(file_name, std::ios::binary);
-
         if (!file) {
             throw "File not open";
         }
@@ -172,7 +224,7 @@ unsigned char& Money::operator[](int i) const{
             return array[size-1];
         }
         else{
-            throw "Ny tbI u EBlan";
+            throw "Wrong parametr";
         }
 }
 
@@ -287,7 +339,7 @@ Money& Money::operator=(const Money& other) {
 
 Money& Money::operator=(double data) {
         if(static_cast<int>(data * 100) / 100.0 != data){
-            throw "Eblan chi sho?";
+            throw "wrong parametr";
         }
         else{
             int count = 0;
