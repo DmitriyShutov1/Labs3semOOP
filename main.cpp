@@ -1,10 +1,7 @@
 #include <iostream>
-
 #include "lib.h"
 
-using namespace std;
-
 int main() {
-    cout << "Bruh: " << endl
-         << A() << endl;
+    Money A(100);
+    std::cout << A.get_value();
 }
