@@ -1,11 +1,17 @@
 #pragma once
 
+#include <string>
+
 class Money {
 private:
     unsigned char* array;
     int size = 0;
 public:
     Money(double data);
+    Money(Money &&other) noexcept; 
+    Money(const std::initializer_list<unsigned char> &t);
+    Money(const std::string &t); 
+    Money();
     Money(const Money& other);
     void set_value(double data);
     void print() const;
