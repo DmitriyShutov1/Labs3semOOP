@@ -42,5 +42,5 @@ int main() {
     figureArray.addFigure(rectangle);
 
     double TrArea = (*figureArray[0]).area();
-    std::cout << TrArea << std::endl << "Kolya has great ass" << std::endl << (*triangle).area() << std::endl;
+    std::cout << TrArea << std::endl << "nfnfg << std::endl << (*triangle).area() << std::endl;
 }
